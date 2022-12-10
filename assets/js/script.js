@@ -20,4 +20,50 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
+  let currentHour = dayjs().hour()
+  function savePastTime(event) {
+    event.preventDefault();
+    console.log($(this))
+  }
+  let saveBtn = $(".saveBtn")
+  saveBtn.on("click", function (event) {
+    event.preventDefault();
+    let id = $(this).parent().attr("id")
+    let value = $(this).siblings(".description").val()
+    console.log(id, value)
+    let schedule = JSON.parse(window.localStorage.getItem("schedule")) || []
+    schedule.push({ id, value })
+    window.localStorage.setItem("schedule", JSON.stringify(schedule))
+  })
+  console.log(currentHour)
+  let saveSchedule = JSON.parse(window.localStorage.getItem("schedule"))
+  $(".description").each(function () {
+    let id = $(this).parent().attr("id")
+    if (saveSchedule.length > 0) {
+      for (let i = 0; i < saveSchedule.length; i++) {
+        const element = saveSchedule[i];
+        if (id === element.id) {
+          $(this).text(element.value)
+        }
+
+      }
+    }
+  })
+  function coloring() {
+    console.log("coloring")
+    $(".time-block").each(function () {
+      let id = $(this).attr("id")
+      if (id < currentHour) {
+      //   $(this).addCLass("past")
+        $(this).css("background-color: blue")
+      } else if (id === currentHour) {
+        // $(this).addCLass("present")
+        $(this).css("background-color: blue")
+      } else {
+        $(this).addClass("future")
+        // $(this).css("background-color: blue")
+      }
+    })
+  }
+coloring()
 });
