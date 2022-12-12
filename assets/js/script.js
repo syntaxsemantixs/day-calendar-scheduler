@@ -1,6 +1,8 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+
+//time display
 let currentTime = $("#currentDay")
 
   function displayTime() {
@@ -29,8 +31,6 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-
-
   let currentHour = dayjs().hour()
   console.log(currentHour)
   //save input
@@ -60,7 +60,7 @@ $(function () {
     }
   })
 
-// color change
+//color change
   $(".time-block").each(function () {
     let id = $(this).attr("id").split('-')[1];
     let stringTime = currentHour.toString(2)
@@ -78,6 +78,7 @@ $(function () {
     } else if (currentHour > numTime) {
       console.log(numTime)
       $(this).addClass("past")
+
     }
   })
 
