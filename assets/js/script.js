@@ -29,8 +29,11 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
+
+
   let currentHour = dayjs().hour()
   console.log(currentHour)
+  //save input
   let saveBtn = $(".saveBtn")
   saveBtn.on("click", function (event) {
     event.preventDefault();
@@ -56,48 +59,25 @@ $(function () {
       }
     }
   })
-//   function coloring() {
-//     console.log("coloring")
-//     $(".time-block").each(function () {
-//       let id = $(this).attr("id")
-//       let stringTime = currentHour.toString(2)
-//       if (id < stringTime) {
-//         console.log(id)
-        
-//         $(this).addCLass("past")
-//         // $(this).css("background-color: blue")
-//       } else if (id === stringTime) {
-//         console.log(id)
-//         // $(this).addCLass("present")
-//         // $(this).css("background-color: blue")
-//       } else {
-//         console.log(id)
-//         // $(this).addClass("future")
-//         // $(this).css("background-color: blue")
-//       }
-//     })
-//   }
-// coloring()
 
-
+// color change
   $(".time-block").each(function () {
     let id = $(this).attr("id").split('-')[1];
     let stringTime = currentHour.toString(2)
     numTime = parseInt(id)
     console.log(currentHour)
     console.log(numTime)
-    if (currentHour > numTime) {
-      console.log(numTime)
-      $(this).addCLass("past")
-      // $(this).css("background-color: blue")
-    } else if (currentHour === numTime) {
-      console.log(numTime)
-      $(this).addCLass("present")
-      // $(this).css("background-color: blue")
-    } else if (2 < numTime) {
+    if (currentHour < numTime) {
       console.log(numTime)
       $(this).addClass("future")
-      // $(this).css("background-color: blue")
+
+    } else if (currentHour === numTime) {
+      console.log(numTime)
+      $(this).addClass("present")
+
+    } else if (currentHour > numTime) {
+      console.log(numTime)
+      $(this).addClass("past")
     }
   })
 
