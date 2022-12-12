@@ -43,6 +43,9 @@ $(function () {
     let schedule = JSON.parse(window.localStorage.getItem("schedule")) || []
     schedule.push({ id, value })
     window.localStorage.setItem("schedule", JSON.stringify(schedule))
+
+  //save message
+    $(".savemsg").text("Schedule Saved.")
   })
 
   console.log(currentHour)
