@@ -41,7 +41,7 @@ $(function () {
   })
 
   console.log(currentHour)
-  let saveSchedule = JSON.parse(window.localStorage.getItem("schedule"))
+  let saveSchedule = JSON.parse(window.localStorage.getItem("schedule")) || []
   $(".description").each(function () {
     let id = $(this).parent().attr("id")
     if (saveSchedule.length > 0) {
