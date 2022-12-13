@@ -1,12 +1,12 @@
 //time display
 let currentTime = $("#currentDay")
 
-  function displayTime() {
-    var actualTime = dayjs().format("MMM DD, YYYY [at] hh:mm:ss a");
-    currentTime.text(actualTime)
-  }
+function displayTime() {
+  var actualTime = dayjs().format("MMM DD, YYYY [at] hh:mm:ss a");
+  currentTime.text(actualTime)
+}
 
-  displayTime();
+displayTime();
 
 $(function () {
   let currentHour = dayjs().hour()
@@ -22,8 +22,22 @@ $(function () {
     schedule.push({ id, value })
     window.localStorage.setItem("schedule", JSON.stringify(schedule))
 
-  //save message
-    $(".savemsg").text("Schedule Saved.")
+    //save message
+    function saveMessage() {
+      var secondsLeft = 5
+
+      var timeInterval = setInterval(function () {
+
+        secondsLeft--;
+        $(".savemsg").text("Schedule Saved.")
+        if (secondsLeft <= 0) {
+          clearInterval(timeInterval);
+          $(".savemsg").text("")
+        }
+      }, 1000)
+
+    }
+    saveMessage()
   })
 
   console.log(currentHour)
@@ -41,10 +55,9 @@ $(function () {
     }
   })
 
-//color change
+  //color change
   $(".time-block").each(function () {
     let id = $(this).attr("id").split('-')[1];
-    let stringTime = currentHour.toString(2)
     numTime = parseInt(id)
     console.log(currentHour)
     console.log(numTime)
